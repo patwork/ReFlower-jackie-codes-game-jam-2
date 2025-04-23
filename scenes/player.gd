@@ -10,6 +10,7 @@ extends CharacterBody3D
 @onready var hand: Marker3D = $Head/Hand
 @onready var camera: Camera3D = $Head/Camera3D
 @onready var ray_cast_3d: RayCast3D = $Head/RayCast3D
+@onready var area_3d: Area3D = $Head/Area3D
 
 var input_dir: Vector3
 var item_in_hand: MyHoldableItem
@@ -73,4 +74,14 @@ func interact() -> void:
 		var collider: Object = ray_cast_3d.get_collider()
 		if collider is Area3D:
 			if (collider as Area3D).owner is MyShelf:
+				if item_in_hand is MyShootingItem:
+					(item_in_hand as MyShootingItem).stop_shooting()
 				item_in_hand = ((collider as Area3D).owner as MyShelf).swap_item(hand, item_in_hand)
+
+
+func _on_area_3d_area_entered(area: Area3D) -> void:
+	pass
+
+
+func _on_area_3d_area_exited(area: Area3D) -> void:
+	pass
