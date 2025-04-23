@@ -1,0 +1,35 @@
+[gd_scene load_steps=3 format=3 uid="uid://rbt8n28h6xkw"]
+
+[ext_resource type="Script" uid="uid://jx8vjd1nu01m" path="res://scenes/player.gd" id="1_3vyb7"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_lnu2h"]
+
+[node name="Player" type="CharacterBody3D"]
+collision_layer = 2
+collision_mask = 17
+script = ExtResource("1_3vyb7")
+mouse_sensitivity = null
+move_speed = null
+acceleration = null
+friction = null
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+shape = SubResource("CapsuleShape3D_lnu2h")
+
+[node name="Head" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.8, 0)
+
+[node name="Camera3D" type="Camera3D" parent="Head"]
+current = true
+
+[node name="AudioListener3D" type="AudioListener3D" parent="Head"]
+current = true
+
+[node name="RayCast3D" type="RayCast3D" parent="Head"]
+target_position = Vector3(0, 0, -1.75)
+collision_mask = 28
+collide_with_areas = true
+
+[node name="Hand" type="Marker3D" parent="Head"]
+transform = Transform3D(0.258819, 0, -0.965926, 0, 1, 0, 0.965926, 0, 0.258819, 0.2, -0.35, 0)

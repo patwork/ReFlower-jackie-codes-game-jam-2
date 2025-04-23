@@ -1,0 +1,53 @@
+[gd_scene load_steps=11 format=3 uid="uid://bl5tkdp28xrwn"]
+
+[ext_resource type="Script" uid="uid://ccvc5qea41i5o" path="res://scenes/game.gd" id="1_yqjtg"]
+[ext_resource type="PackedScene" uid="uid://bysrnoyu5qoi2" path="res://scenes/level.tscn" id="2_lbhrr"]
+[ext_resource type="Environment" uid="uid://d1boutyxjpyg6" path="res://default_environment.tres" id="2_p57ef"]
+[ext_resource type="PackedScene" uid="uid://cqk024jm42d1t" path="res://scenes/flower.tscn" id="3_iywne"]
+[ext_resource type="AudioStream" uid="uid://bv88dunsiqmmr" path="res://assets/music/music_jes_smith_country_folk_can_party_full_mix_037.mp3" id="3_u5sy4"]
+[ext_resource type="PackedScene" uid="uid://rbt8n28h6xkw" path="res://scenes/player.tscn" id="4_p57ef"]
+[ext_resource type="PackedScene" uid="uid://3dk2mqubsabg" path="res://scenes/shelf.tscn" id="6_0tnpc"]
+[ext_resource type="PackedScene" uid="uid://b8yv2r2bdd7od" path="res://scenes/game_ui.tscn" id="6_u5sy4"]
+[ext_resource type="PackedScene" uid="uid://baib7wf758seg" path="res://items/spray_yellow.tscn" id="7_kvpfn"]
+[ext_resource type="PackedScene" uid="uid://b5ar11q7l5u4l" path="res://items/watering_can.tscn" id="7_vtaks"]
+
+[node name="Game" type="Node3D"]
+script = ExtResource("1_yqjtg")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.866023, -0.433016, 0.250001, 0, 0.499998, 0.866027, -0.500003, 0.749999, -0.43301, 0, 0, 0)
+light_color = Color(0.815746, 0.76469, 0.679896, 1)
+shadow_enabled = true
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = ExtResource("2_p57ef")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_u5sy4")
+autoplay = true
+bus = &"Music"
+
+[node name="Level" parent="." instance=ExtResource("2_lbhrr")]
+
+[node name="Flower" parent="." instance=ExtResource("3_iywne")]
+
+[node name="Shelves" type="Node3D" parent="."]
+
+[node name="Shelf" parent="Shelves" instance=ExtResource("6_0tnpc")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6, 1, -8.5)
+
+[node name="Shelf2" parent="Shelves" instance=ExtResource("6_0tnpc")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 6, 1, 8.5)
+
+[node name="Shelf3" parent="Shelves" instance=ExtResource("6_0tnpc")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 8.5, 1, -6)
+initial_item = ExtResource("7_kvpfn")
+
+[node name="Shelf4" parent="Shelves" instance=ExtResource("6_0tnpc")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -8.5, 1, 6)
+initial_item = ExtResource("7_vtaks")
+
+[node name="Player" parent="." instance=ExtResource("4_p57ef")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.43867, 2.38419e-07, 1.40477)
+
+[node name="GameUI" parent="." instance=ExtResource("6_u5sy4")]

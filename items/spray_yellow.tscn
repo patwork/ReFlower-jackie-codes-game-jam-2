@@ -1,0 +1,34 @@
+[gd_scene load_steps=5 format=3 uid="uid://baib7wf758seg"]
+
+[ext_resource type="Script" uid="uid://bv35wy5ttq0f7" path="res://items/holdable_item.gd" id="1_o73p4"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_kdax7"]
+albedo_color = Color(0.686372, 0.608477, 0.128653, 1)
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_o73p4"]
+material = SubResource("StandardMaterial3D_kdax7")
+top_radius = 0.1
+bottom_radius = 0.1
+height = 0.4
+radial_segments = 8
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_rig0q"]
+material = SubResource("StandardMaterial3D_kdax7")
+top_radius = 0.01
+bottom_radius = 0.1
+height = 0.1
+radial_segments = 8
+
+[node name="SprayYellow" type="Node3D"]
+script = ExtResource("1_o73p4")
+metadata/_custom_type_script = "uid://bv35wy5ttq0f7"
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.2, 0)
+cast_shadow = 0
+mesh = SubResource("CylinderMesh_o73p4")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="."]
+transform = Transform3D(-4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0, 1, -0.13, 0.33, 0)
+cast_shadow = 0
+mesh = SubResource("CylinderMesh_rig0q")

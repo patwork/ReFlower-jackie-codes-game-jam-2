@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://bsxlynyplr46i"]
+
+[ext_resource type="Script" uid="uid://bt2bnhegags7r" path="res://scripts/audio_manager.gd" id="1_dlf8v"]
+[ext_resource type="AudioStream" uid="uid://cprvoac6bhsyc" path="res://assets/sfx/esm_japanese_button_1_game_mobile_user_interface_tap_fx_sound.mp3" id="2_4c52k"]
+
+[node name="AudioManager" type="Node"]
+script = ExtResource("1_dlf8v")
+sound_effects = Dictionary[int, AudioStreamMP3]({
+0: ExtResource("2_4c52k")
+})
+metadata/_custom_type_script = "uid://bt2bnhegags7r"

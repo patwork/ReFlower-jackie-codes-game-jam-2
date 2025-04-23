@@ -1,0 +1,2 @@
+class_name MyHoldableItem
+extends Node3D

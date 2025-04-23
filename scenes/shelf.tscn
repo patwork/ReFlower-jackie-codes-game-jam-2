@@ -1,0 +1,32 @@
+[gd_scene load_steps=5 format=3 uid="uid://3dk2mqubsabg"]
+
+[ext_resource type="Script" uid="uid://u4sgji76d8xp" path="res://scenes/shelf.gd" id="1_eyi4x"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_x5u3a"]
+albedo_color = Color(0.739258, 0.235903, 0.194917, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_eyi4x"]
+material = SubResource("StandardMaterial3D_x5u3a")
+size = Vector3(0.8, 0.2, 0.8)
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_x5u3a"]
+height = 0.5
+radius = 0.4
+
+[node name="Shelf" type="Node3D"]
+script = ExtResource("1_eyi4x")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.1, 0)
+mesh = SubResource("BoxMesh_eyi4x")
+
+[node name="Marker3D" type="Marker3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.2, 0)
+
+[node name="Area3D" type="Area3D" parent="."]
+collision_layer = 8
+collision_mask = 0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.4, 0)
+shape = SubResource("CylinderShape3D_x5u3a")
