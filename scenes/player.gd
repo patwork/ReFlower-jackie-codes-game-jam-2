@@ -2,9 +2,9 @@ class_name MyPlayer
 extends CharacterBody3D
 
 @export var mouse_sensitivity: float = 0.2
-@export var move_speed: float = 6.0
-@export var acceleration: float = 10.0
-@export var friction: float = 8.0
+@export var move_speed: float = 8.0
+@export var acceleration: float = 40.0
+@export var friction: float = 20.0
 
 @onready var head: Node3D = $Head
 @onready var hand: Marker3D = $Head/Hand
@@ -36,9 +36,9 @@ func _physics_process(delta: float) -> void:
 	var target_velocity: Vector3 = input_dir * move_speed
 
 	if input_dir.length() > 0:
-		velocity = velocity.lerp(target_velocity, acceleration * delta)
+		velocity = velocity.move_toward(target_velocity, acceleration * delta)
 	else:
-		velocity = velocity.lerp(Vector3.ZERO, friction * delta)
+		velocity = velocity.move_toward(Vector3.ZERO, friction * delta)
 
 	move_and_slide()
 
