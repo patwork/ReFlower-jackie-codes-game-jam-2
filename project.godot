@@ -13,6 +13,7 @@ config_version=5
 config/name="ReFlower"
 run/main_scene="uid://bl5tkdp28xrwn"
 config/features=PackedStringArray("4.4", "GL Compatibility")
+run/max_fps=60
 boot_splash/image="uid://c3ubido6jlvls"
 config/icon="res://icon.svg"
 
@@ -34,6 +35,7 @@ gdscript/warnings/unsafe_call_argument=1
 
 window/size/viewport_width=1280
 window/size/viewport_height=720
+window/stretch/mode="canvas_items"
 
 [file_customization]
 
