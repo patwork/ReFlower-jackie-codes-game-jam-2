@@ -1,31 +1,32 @@
 [gd_scene load_steps=5 format=3 uid="uid://b5ar11q7l5u4l"]
 
-[ext_resource type="Script" uid="uid://bv35wy5ttq0f7" path="res://items/holdable_item.gd" id="1_rig0q"]
+[ext_resource type="PackedScene" uid="uid://dpncq661qcbyg" path="res://items/holdable_item.tscn" id="1_rig0q"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_kdax7"]
 albedo_color = Color(0.221771, 0.647348, 0.881248, 1)
 
-[sub_resource type="BoxMesh" id="BoxMesh_2jqjt"]
+[sub_resource type="BoxMesh" id="BoxMesh_kdax7"]
 material = SubResource("StandardMaterial3D_kdax7")
 size = Vector3(0.45, 0.3, 0.15)
 
-[sub_resource type="CylinderMesh" id="CylinderMesh_rig0q"]
+[sub_resource type="CylinderMesh" id="CylinderMesh_2jqjt"]
 material = SubResource("StandardMaterial3D_kdax7")
 top_radius = 0.01
 bottom_radius = 0.1
 height = 0.1
 radial_segments = 8
 
-[node name="WateringCan" type="Node3D"]
-script = ExtResource("1_rig0q")
-metadata/_custom_type_script = "uid://bv35wy5ttq0f7"
+[node name="WateringCan" instance=ExtResource("1_rig0q")]
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+[node name="Handle" parent="." index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.15, 0)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." index="1"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.15, 0)
 cast_shadow = 0
-mesh = SubResource("BoxMesh_2jqjt")
+mesh = SubResource("BoxMesh_kdax7")
 
-[node name="MeshInstance3D2" type="MeshInstance3D" parent="."]
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="." index="2"]
 transform = Transform3D(-4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0, 1, -0.25, 0.25, 0)
 cast_shadow = 0
-mesh = SubResource("CylinderMesh_rig0q")
+mesh = SubResource("CylinderMesh_2jqjt")

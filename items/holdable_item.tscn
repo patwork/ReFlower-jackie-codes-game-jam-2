@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://dpncq661qcbyg"]
+
+[ext_resource type="Script" uid="uid://bv35wy5ttq0f7" path="res://items/holdable_item.gd" id="1_mcpm5"]
+
+[node name="HoldableItem" type="Node3D"]
+script = ExtResource("1_mcpm5")
+metadata/_custom_type_script = "uid://bv35wy5ttq0f7"
+
+[node name="Handle" type="Marker3D" parent="."]
