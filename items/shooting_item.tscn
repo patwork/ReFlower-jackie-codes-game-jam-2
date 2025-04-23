@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3 uid="uid://bw2is15aojuvc"]
+
+[ext_resource type="Script" uid="uid://ckppxrgcc03ck" path="res://items/shooting_item.gd" id="1_i2xu3"]
+[ext_resource type="PackedScene" uid="uid://dpncq661qcbyg" path="res://items/holdable_item.tscn" id="1_l6fbc"]
+
+[node name="ShootingItem" instance=ExtResource("1_l6fbc")]
+script = ExtResource("1_i2xu3")
+
+[node name="CPUParticles3D" type="CPUParticles3D" parent="." index="1"]

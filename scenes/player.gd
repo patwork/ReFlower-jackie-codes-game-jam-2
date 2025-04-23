@@ -26,7 +26,9 @@ func _unhandled_input(event: InputEvent) -> void:
 		rotate_y(deg_to_rad(-event_mouse.relative.x * mouse_sensitivity))
 		head.rotate_x(deg_to_rad(-event_mouse.relative.y * mouse_sensitivity))
 		head.rotation.x = clampf(head.rotation.x, deg_to_rad(-90.0), deg_to_rad(90.0))
-	elif event.is_action_pressed("interact"):
+	elif event.is_action_released("shoot"):
+		shoot()
+	elif event.is_action_released("interact"):
 		interact()
 
 
@@ -59,6 +61,11 @@ func get_input() -> void:
 		input_dir += right
 
 	input_dir = input_dir.normalized()
+
+
+func shoot() -> void:
+	if item_in_hand and item_in_hand is MyShootingItem:
+		(item_in_hand as MyShootingItem).start_shooting()
 
 
 func interact() -> void:

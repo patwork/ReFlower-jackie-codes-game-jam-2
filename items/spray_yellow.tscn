@@ -1,37 +1,56 @@
-[gd_scene load_steps=5 format=3 uid="uid://baib7wf758seg"]
+[gd_scene load_steps=7 format=3 uid="uid://baib7wf758seg"]
 
-[ext_resource type="PackedScene" uid="uid://dpncq661qcbyg" path="res://items/holdable_item.tscn" id="1_o73p4"]
+[ext_resource type="PackedScene" uid="uid://bw2is15aojuvc" path="res://items/shooting_item.tscn" id="1_vrer1"]
+[ext_resource type="QuadMesh" uid="uid://yakx1m1c7s53" path="res://resources/particle_yellow_spray.tres" id="2_vrer1"]
+
+[sub_resource type="Gradient" id="Gradient_1ld8b"]
+offsets = PackedFloat32Array(0, 0.9, 1)
+colors = PackedColorArray(1, 1, 1, 0.784314, 1, 1, 1, 0.784314, 1, 1, 1, 0)
+metadata/_snap_enabled = true
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_kdax7"]
 albedo_color = Color(0.686372, 0.608477, 0.128653, 1)
 
-[sub_resource type="CylinderMesh" id="CylinderMesh_vrer1"]
+[sub_resource type="CylinderMesh" id="CylinderMesh_1ld8b"]
 material = SubResource("StandardMaterial3D_kdax7")
 top_radius = 0.1
 bottom_radius = 0.1
 height = 0.4
 radial_segments = 8
 
-[sub_resource type="CylinderMesh" id="CylinderMesh_1ld8b"]
+[sub_resource type="CylinderMesh" id="CylinderMesh_s77ga"]
 material = SubResource("StandardMaterial3D_kdax7")
 top_radius = 0.01
 bottom_radius = 0.1
 height = 0.1
 radial_segments = 8
 
-[node name="SprayYellow" instance=ExtResource("1_o73p4")]
+[node name="SprayYellow" instance=ExtResource("1_vrer1")]
 
 [node name="Handle" parent="." index="0"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.2, 0.3, 0)
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="." index="1"]
+[node name="CPUParticles3D" parent="." index="1"]
+transform = Transform3D(-1, 0, 1.50996e-07, 0, 1, 0, -1.50996e-07, 0, -1, -0.18, 0.33, 0)
+emitting = false
+amount = 32
+one_shot = true
+mesh = ExtResource("2_vrer1")
+spread = 5.0
+gravity = Vector3(0, 0, 0)
+initial_velocity_min = 3.0
+initial_velocity_max = 3.0
+scale_amount_max = 2.0
+color_ramp = SubResource("Gradient_1ld8b")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." index="2"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.2, 0)
 cast_shadow = 0
-mesh = SubResource("CylinderMesh_vrer1")
+mesh = SubResource("CylinderMesh_1ld8b")
 skeleton = NodePath("../Handle")
 
-[node name="MeshInstance3D2" type="MeshInstance3D" parent="." index="2"]
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="." index="3"]
 transform = Transform3D(-4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0, 1, -0.13, 0.33, 0)
 cast_shadow = 0
-mesh = SubResource("CylinderMesh_1ld8b")
+mesh = SubResource("CylinderMesh_s77ga")
 skeleton = NodePath("../Handle")
