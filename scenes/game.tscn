@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://bl5tkdp28xrwn"]
+[gd_scene load_steps=13 format=3 uid="uid://bl5tkdp28xrwn"]
 
 [ext_resource type="Script" uid="uid://ccvc5qea41i5o" path="res://scenes/game.gd" id="1_yqjtg"]
 [ext_resource type="PackedScene" uid="uid://bysrnoyu5qoi2" path="res://scenes/level.tscn" id="2_lbhrr"]
@@ -8,19 +8,28 @@
 [ext_resource type="PackedScene" uid="uid://rbt8n28h6xkw" path="res://scenes/player.tscn" id="4_p57ef"]
 [ext_resource type="PackedScene" uid="uid://3dk2mqubsabg" path="res://scenes/shelf.tscn" id="6_0tnpc"]
 [ext_resource type="PackedScene" uid="uid://b8yv2r2bdd7od" path="res://scenes/game_ui.tscn" id="6_u5sy4"]
+[ext_resource type="PackedScene" uid="uid://bs0gvjvpxtg0y" path="res://items/spray_red.tscn" id="7_dinhu"]
 [ext_resource type="PackedScene" uid="uid://baib7wf758seg" path="res://items/spray_yellow.tscn" id="7_kvpfn"]
 [ext_resource type="PackedScene" uid="uid://b5ar11q7l5u4l" path="res://items/watering_can.tscn" id="7_vtaks"]
+[ext_resource type="PackedScene" uid="uid://b7ah1o2etqwd7" path="res://items/spray_blue.tscn" id="8_kvuet"]
 
 [node name="Game" type="Node3D"]
 script = ExtResource("1_yqjtg")
 
-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
-transform = Transform3D(-0.866023, -0.433016, 0.250001, 0, 0.499998, 0.866027, -0.500003, 0.749999, -0.43301, 0, 0, 0)
-light_color = Color(0.815746, 0.76469, 0.679896, 1)
-shadow_enabled = true
-
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = ExtResource("2_p57ef")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.866023, -0.433016, 0.250001, 0, 0.499998, 0.866027, -0.500003, 0.749999, -0.43301, 0, 0, 0)
+light_color = Color(0.788426, 0.752921, 0.600136, 1)
+shadow_enabled = true
+
+[node name="ReflectionProbe" type="ReflectionProbe" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4, 0)
+visible = false
+size = Vector3(22, 15, 22)
+cull_mask = 1048573
+reflection_mask = 1048573
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("3_u5sy4")
@@ -34,17 +43,19 @@ bus = &"Music"
 [node name="Shelves" type="Node3D" parent="."]
 
 [node name="Shelf" parent="Shelves" instance=ExtResource("6_0tnpc")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6, 1, -8.5)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6, 1.48, -9.5)
+initial_item = ExtResource("7_dinhu")
 
 [node name="Shelf2" parent="Shelves" instance=ExtResource("6_0tnpc")]
-transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 6, 1, 8.5)
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 6, 1.19, 9.5)
+initial_item = ExtResource("8_kvuet")
 
 [node name="Shelf3" parent="Shelves" instance=ExtResource("6_0tnpc")]
-transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 8.5, 1, -6)
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 9.5, 1.19, -6)
 initial_item = ExtResource("7_kvpfn")
 
 [node name="Shelf4" parent="Shelves" instance=ExtResource("6_0tnpc")]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -8.5, 1, 6)
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -9.5, 1.19, 6)
 initial_item = ExtResource("7_vtaks")
 
 [node name="Player" parent="." instance=ExtResource("4_p57ef")]

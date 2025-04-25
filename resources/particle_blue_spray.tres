@@ -1,0 +1,7 @@
+[gd_resource type="QuadMesh" load_steps=2 format=3 uid="uid://dcxd8a2ut2oov"]
+
+[ext_resource type="Material" uid="uid://bx2scy8pym2xd" path="res://resources/mat_blue_spray.tres" id="1_alug1"]
+
+[resource]
+material = ExtResource("1_alug1")
+size = Vector2(0.1, 0.1)

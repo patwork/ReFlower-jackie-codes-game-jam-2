@@ -8,6 +8,7 @@ func start_shooting() -> bool:
 	if cpu_particles_3d.emitting:
 		return false
 
+	cpu_particles_3d.restart()
 	cpu_particles_3d.emitting = true
 	return true
 

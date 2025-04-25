@@ -1,48 +1,37 @@
-[gd_scene load_steps=6 format=3 uid="uid://b5ar11q7l5u4l"]
+[gd_scene load_steps=5 format=3 uid="uid://b5ar11q7l5u4l"]
 
 [ext_resource type="PackedScene" uid="uid://bw2is15aojuvc" path="res://items/shooting_item.tscn" id="1_kdax7"]
 [ext_resource type="QuadMesh" uid="uid://ny6leal4wmo6" path="res://resources/particle_water.tres" id="2_kdax7"]
+[ext_resource type="ArrayMesh" uid="uid://b18dfjhf34fhj" path="res://assets/models/models_WaterCan.res" id="3_2jqjt"]
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_kdax7"]
-albedo_color = Color(0.221771, 0.647348, 0.881248, 1)
-
-[sub_resource type="BoxMesh" id="BoxMesh_2jqjt"]
-material = SubResource("StandardMaterial3D_kdax7")
-size = Vector3(0.45, 0.3, 0.15)
-
-[sub_resource type="CylinderMesh" id="CylinderMesh_0flrl"]
-material = SubResource("StandardMaterial3D_kdax7")
-top_radius = 0.01
-bottom_radius = 0.1
-height = 0.1
-radial_segments = 8
+[sub_resource type="Gradient" id="Gradient_2jqjt"]
+offsets = PackedFloat32Array(0, 0.7, 1)
+colors = PackedColorArray(1, 1, 1, 0.784314, 1, 1, 1, 0.784314, 1, 1, 1, 0)
+metadata/_snap_enabled = true
 
 [node name="WateringCan" instance=ExtResource("1_kdax7")]
 
 [node name="Handle" parent="." index="0"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.2, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.1, 0)
 
 [node name="CPUParticles3D" parent="." index="1"]
-transform = Transform3D(-1, 0, 1.50996e-07, 0, 1, 0, -1.50996e-07, 0, -1, -0.3, 0.25, 0)
+transform = Transform3D(-1, 0, 1.50996e-07, 0, 1, 0, -1.50996e-07, 0, -1, -0.21, 0.21, 0)
 emitting = false
 amount = 32
-lifetime = 2.0
 one_shot = true
 mesh = ExtResource("2_kdax7")
-spread = 10.0
+spread = 5.0
 gravity = Vector3(0, -1, 0)
 initial_velocity_min = 2.0
 initial_velocity_max = 2.0
+angular_velocity_min = -90.0
+angular_velocity_max = 90.0
+linear_accel_min = 1.0
+linear_accel_max = 1.0
 scale_amount_min = 0.5
 scale_amount_max = 2.0
-color = Color(1, 1, 1, 0.784314)
+color_ramp = SubResource("Gradient_2jqjt")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="." index="2"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.15, 0)
+[node name="ModelsWaterCan" type="MeshInstance3D" parent="." index="2"]
 cast_shadow = 0
-mesh = SubResource("BoxMesh_2jqjt")
-
-[node name="MeshInstance3D2" type="MeshInstance3D" parent="." index="3"]
-transform = Transform3D(-4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0, 1, -0.25, 0.25, 0)
-cast_shadow = 0
-mesh = SubResource("CylinderMesh_0flrl")
+mesh = ExtResource("3_2jqjt")

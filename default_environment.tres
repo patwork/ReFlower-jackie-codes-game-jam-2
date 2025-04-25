@@ -13,3 +13,6 @@ sky_material = SubResource("ProceduralSkyMaterial_yqjtg")
 background_mode = 2
 sky = SubResource("Sky_lnu2h")
 tonemap_mode = 2
+glow_enabled = true
+glow_intensity = 2.0
+glow_hdr_threshold = 0.3

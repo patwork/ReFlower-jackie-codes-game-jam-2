@@ -1,15 +1,15 @@
-[gd_scene load_steps=5 format=3 uid="uid://baib7wf758seg"]
+[gd_scene load_steps=5 format=3 uid="uid://bs0gvjvpxtg0y"]
 
-[ext_resource type="PackedScene" uid="uid://bw2is15aojuvc" path="res://items/shooting_item.tscn" id="1_vrer1"]
-[ext_resource type="QuadMesh" uid="uid://yakx1m1c7s53" path="res://resources/particle_yellow_spray.tres" id="2_vrer1"]
-[ext_resource type="ArrayMesh" uid="uid://d10smnb5bpdsj" path="res://assets/models/models_Spray_Yellow.res" id="3_1ld8b"]
+[ext_resource type="PackedScene" uid="uid://bw2is15aojuvc" path="res://items/shooting_item.tscn" id="1_8i04n"]
+[ext_resource type="QuadMesh" uid="uid://v083pgcxeng0" path="res://resources/particle_red_spray.tres" id="2_8i04n"]
+[ext_resource type="ArrayMesh" uid="uid://b6t55xydcssye" path="res://assets/models/models_Spray_Red.res" id="3_8i04n"]
 
 [sub_resource type="Gradient" id="Gradient_1ld8b"]
 offsets = PackedFloat32Array(0, 0.7, 1)
 colors = PackedColorArray(1, 1, 1, 0.784314, 1, 1, 1, 0.784314, 1, 1, 1, 0)
 metadata/_snap_enabled = true
 
-[node name="SprayYellow" instance=ExtResource("1_vrer1")]
+[node name="SprayRed" instance=ExtResource("1_8i04n")]
 
 [node name="Handle" parent="." index="0"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.05, 0)
@@ -20,7 +20,7 @@ emitting = false
 amount = 16
 lifetime = 0.5
 one_shot = true
-mesh = ExtResource("2_vrer1")
+mesh = ExtResource("2_8i04n")
 spread = 5.0
 gravity = Vector3(0, 0, 0)
 initial_velocity_min = 3.0
@@ -30,6 +30,6 @@ angular_velocity_max = 90.0
 scale_amount_max = 2.0
 color_ramp = SubResource("Gradient_1ld8b")
 
-[node name="ModelsSprayYellow" type="MeshInstance3D" parent="." index="2"]
+[node name="ModelsSprayRed" type="MeshInstance3D" parent="." index="2"]
 cast_shadow = 0
-mesh = ExtResource("3_1ld8b")
+mesh = ExtResource("3_8i04n")
