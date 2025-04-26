@@ -19,6 +19,7 @@ config/icon="res://icon.svg"
 
 [autoload]
 
+Constants="*res://scripts/constants.gd"
 EventBus="*res://scripts/event_bus.gd"
 AudioManager="*res://scripts/audio_manager.tscn"
 
@@ -41,7 +42,8 @@ window/stretch/mode="canvas_items"
 
 folder_colors={
 "res://assets/": "red",
-"res://items/": "blue",
+"res://enemies/": "teal",
+"res://items/": "teal",
 "res://resources/": "blue",
 "res://scenes/": "green",
 "res://scripts/": "orange"

@@ -10,15 +10,21 @@ extends CharacterBody3D
 @onready var hand: Marker3D = $Head/Hand
 @onready var camera: Camera3D = $Head/Camera3D
 @onready var ray_cast_3d: RayCast3D = $Head/RayCast3D
-@onready var area_3d: Area3D = $Head/Area3D
+@onready var hitbox: Area3D = $Head/Hitbox
+
+@onready var audio_footstep: AudioStreamPlayer3D = $Footsteps/AudioFootstep
 
 var input_dir: Vector3
 var item_in_hand: MyHoldableItem
+var footsteps_dist: float
 
 
 func _ready() -> void:
 	input_dir = Vector3.ZERO
 	item_in_hand = null
+	footsteps_dist = 0.0
+
+	audio_footstep.stream = AudioManager.sound_effects[AudioManager.SOUND_EFFECT.FOOTSTEP]
 
 
 func _unhandled_input(event: InputEvent) -> void:
@@ -33,6 +39,10 @@ func _unhandled_input(event: InputEvent) -> void:
 		interact()
 
 
+func _process(_delta: float) -> void:
+	footsteps_sounds()
+
+
 func _physics_process(delta: float) -> void:
 	get_input()
 
@@ -43,7 +53,16 @@ func _physics_process(delta: float) -> void:
 	else:
 		velocity = velocity.move_toward(Vector3.ZERO, friction * delta)
 
+	velocity.y = -10.0
+
+	var prev_position: Vector3 = global_position
 	move_and_slide()
+
+	var distance: float = prev_position.distance_to(global_position)
+	if is_zero_approx(distance) or is_zero_approx(input_dir.length()):
+		footsteps_dist = 0.0
+	else:
+		footsteps_dist += distance
 
 
 func get_input() -> void:
@@ -79,9 +98,16 @@ func interact() -> void:
 				item_in_hand = ((collider as Area3D).owner as MyShelf).swap_item(hand, item_in_hand)
 
 
-func _on_area_3d_area_entered(area: Area3D) -> void:
-	pass
+func footsteps_sounds() -> void:
+	if footsteps_dist > 3.0:
+		footsteps_dist -= 3.0
+		audio_footstep.pitch_scale = randf_range(0.9, 1.1)
+		audio_footstep.play()
 
 
-func _on_area_3d_area_exited(area: Area3D) -> void:
-	pass
+func _on_hitbox_area_entered(area: Area3D) -> void:
+	print("in", area)
+
+
+func _on_hitbox_area_exited(area: Area3D) -> void:
+	print("out", area)

@@ -1,12 +1,15 @@
 class_name MyGame
 extends Node3D
 
+@onready var audio_stream_player: AudioStreamPlayer = $AudioStreamPlayer
+
 var _debug_mouse_mode: int
 
 
 func _ready() -> void:
 	_debug_mouse_mode = Input.MOUSE_MODE_CAPTURED
 	Input.set_mouse_mode(_debug_mouse_mode)
+	# FIXME audio_stream_player.play()
 
 
 func _unhandled_input(event: InputEvent) -> void:

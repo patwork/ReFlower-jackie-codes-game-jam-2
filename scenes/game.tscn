@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://bl5tkdp28xrwn"]
+[gd_scene load_steps=15 format=3 uid="uid://bl5tkdp28xrwn"]
 
 [ext_resource type="Script" uid="uid://ccvc5qea41i5o" path="res://scenes/game.gd" id="1_yqjtg"]
 [ext_resource type="PackedScene" uid="uid://bysrnoyu5qoi2" path="res://scenes/level.tscn" id="2_lbhrr"]
@@ -12,6 +12,8 @@
 [ext_resource type="PackedScene" uid="uid://baib7wf758seg" path="res://items/spray_yellow.tscn" id="7_kvpfn"]
 [ext_resource type="PackedScene" uid="uid://b5ar11q7l5u4l" path="res://items/watering_can.tscn" id="7_vtaks"]
 [ext_resource type="PackedScene" uid="uid://b7ah1o2etqwd7" path="res://items/spray_blue.tscn" id="8_kvuet"]
+[ext_resource type="Script" uid="uid://cknwoinopojdf" path="res://scenes/enemy_spawner.gd" id="11_kvuet"]
+[ext_resource type="PackedScene" uid="uid://cmymhcx2e7he3" path="res://enemies/enemy_wasp.tscn" id="12_trtic"]
 
 [node name="Game" type="Node3D"]
 script = ExtResource("1_yqjtg")
@@ -24,16 +26,8 @@ transform = Transform3D(0.766044, -0.413176, 0.492404, 0, 0.766044, 0.642788, -0
 light_color = Color(0.788426, 0.752921, 0.600136, 1)
 shadow_enabled = true
 
-[node name="ReflectionProbe" type="ReflectionProbe" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4, 0)
-visible = false
-size = Vector3(22, 15, 22)
-cull_mask = 1048573
-reflection_mask = 1048573
-
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("3_u5sy4")
-autoplay = true
 bus = &"Music"
 
 [node name="Level" parent="." instance=ExtResource("2_lbhrr")]
@@ -58,7 +52,22 @@ initial_item = ExtResource("7_kvpfn")
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -9.5, 1.19, 6)
 initial_item = ExtResource("7_vtaks")
 
+[node name="EnemySpawner" type="Node3D" parent="."]
+script = ExtResource("11_kvuet")
+
+[node name="EnemyWasp" parent="EnemySpawner" instance=ExtResource("12_trtic")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 7.16446, 5.79123)
+
+[node name="EnemyWasp2" parent="EnemySpawner" instance=ExtResource("12_trtic")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.30277, 4.7864, 1.27303)
+
+[node name="EnemyWasp3" parent="EnemySpawner" instance=ExtResource("12_trtic")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.89369, 3.61105, -5.51675)
+
+[node name="EnemyWasp4" parent="EnemySpawner" instance=ExtResource("12_trtic")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.33439, 3.61105, -4.6065)
+
 [node name="Player" parent="." instance=ExtResource("4_p57ef")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.43867, 2.38419e-07, 1.40477)
+transform = Transform3D(0.34202, -0.0818996, 0.936117, 0, 0.996195, 0.0871557, -0.939693, -0.029809, 0.340719, 3, 0, 3)
 
 [node name="GameUI" parent="." instance=ExtResource("6_u5sy4")]

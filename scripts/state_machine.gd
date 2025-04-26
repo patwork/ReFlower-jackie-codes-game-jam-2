@@ -26,6 +26,7 @@ func _physics_process(delta: float) -> void:
 
 
 func switch_state(new_state: MyState) -> void:
+	assert(new_state)
 	if current_state:
 		current_state.exit(new_state)
 	var old_state: MyState = current_state

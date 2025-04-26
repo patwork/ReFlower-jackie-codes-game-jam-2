@@ -3,14 +3,14 @@ extends StaticBody3D
 
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 
-const ANIM_GROW = &"ArmatureAction"
+const ANIM_GROW : StringName = &"ArmatureAction"
 
 var _animation_length: float
 
 
 func _ready() -> void:
 	_animation_length = animation_player.get_animation(ANIM_GROW).length
-	seek_animation(0.0)
+	seek_animation(100.0)
 
 
 func seek_animation(percent: float) -> void:

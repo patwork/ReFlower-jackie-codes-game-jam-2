@@ -1,0 +1,40 @@
+[gd_scene load_steps=7 format=3 uid="uid://cmymhcx2e7he3"]
+
+[ext_resource type="PackedScene" uid="uid://bu1m5xtor2t0n" path="res://enemies/enemy.tscn" id="1_upg53"]
+[ext_resource type="Script" uid="uid://bl600dy0oixko" path="res://enemies/enemy_wasp.gd" id="2_5ewww"]
+[ext_resource type="Script" uid="uid://k5omkdf1kryu" path="res://enemies/ai/wasp_wander.gd" id="4_lj4iv"]
+[ext_resource type="Script" uid="uid://5da5ud42y8sj" path="res://enemies/ai/wasp_hover.gd" id="4_vj878"]
+[ext_resource type="PackedScene" uid="uid://dksracxhpsfym" path="res://assets/models/wasp.glb" id="5_lj4iv"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_lj4iv"]
+radius = 0.3
+
+[node name="EnemyWasp" instance=ExtResource("1_upg53")]
+script = ExtResource("2_5ewww")
+
+[node name="CollisionShape3D" parent="Hitbox" index="0"]
+shape = SubResource("SphereShape3D_lj4iv")
+
+[node name="Awaken" parent="AI" index="0" node_paths=PackedStringArray("next_state")]
+next_state = NodePath("../WaspWander")
+
+[node name="WaspWander" type="Node" parent="AI" index="1"]
+script = ExtResource("4_lj4iv")
+metadata/_custom_type_script = "uid://yfay4sjiuxe4"
+
+[node name="WaspHover" type="Node" parent="AI" index="2"]
+script = ExtResource("4_vj878")
+metadata/_custom_type_script = "uid://yfay4sjiuxe4"
+
+[node name="wasp" parent="." index="2" instance=ExtResource("5_lj4iv")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.10854, -0.0676613)
+
+[node name="Audio" type="Node3D" parent="." index="3"]
+
+[node name="AudioFly" type="AudioStreamPlayer3D" parent="Audio" index="0"]
+max_distance = 4.0
+bus = &"SFX"
+
+[node name="AudioDie" type="AudioStreamPlayer3D" parent="Audio" index="1"]
+max_distance = 4.0
+bus = &"SFX"

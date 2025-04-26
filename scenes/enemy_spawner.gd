@@ -1,0 +1,2 @@
+class_name MyEnemySpawner
+extends Node3D
