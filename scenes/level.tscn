@@ -95,7 +95,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.09666, 0, 10.0188)
 mesh = ExtResource("4_2r41h")
 
 [node name="ModelsPlanks" type="MeshInstance3D" parent="."]
-transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -9.5, 0, 6)
+transform = Transform3D(0.109821, 0, -0.993951, 0, 1, 0, 0.993951, 0, 0.109821, -9.5, 0, 6)
 mesh = ExtResource("5_klq6b")
 
 [node name="ModelsPlanks2" type="MeshInstance3D" parent="."]
@@ -103,9 +103,9 @@ transform = Transform3D(-0.326162, 0, -0.945314, 0, 1, 0, 0.945314, 0, -0.326162
 mesh = ExtResource("5_klq6b")
 
 [node name="ModelsStand" type="MeshInstance3D" parent="."]
-transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 9.5, 0, -6)
+transform = Transform3D(0.180107, 0, -0.983647, 0, 1, 0, 0.983647, 0, 0.180107, 9.5, 0, -6)
 mesh = ExtResource("6_b121j")
 
 [node name="ModelsStand2" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6, 0, 9.5)
+transform = Transform3D(0.98215, 0, 0.188101, 0, 1, 0, -0.188101, 0, 0.98215, 6, 0, 9.5)
 mesh = ExtResource("6_b121j")
