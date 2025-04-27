@@ -14,7 +14,6 @@ config/name="ReFlower"
 run/main_scene="uid://bl5tkdp28xrwn"
 config/features=PackedStringArray("4.4", "GL Compatibility")
 run/max_fps=60
-boot_splash/image="uid://c3ubido6jlvls"
 config/icon="res://icon.png"
 
 [autoload]
