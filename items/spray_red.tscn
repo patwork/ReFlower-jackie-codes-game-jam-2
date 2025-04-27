@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://bs0gvjvpxtg0y"]
+[gd_scene load_steps=6 format=3 uid="uid://bs0gvjvpxtg0y"]
 
 [ext_resource type="PackedScene" uid="uid://bw2is15aojuvc" path="res://items/shooting_item.tscn" id="1_8i04n"]
 [ext_resource type="QuadMesh" uid="uid://v083pgcxeng0" path="res://resources/particle_red_spray.tres" id="2_8i04n"]
+[ext_resource type="Script" uid="uid://fmruwsd3h3va" path="res://items/spray.gd" id="2_tcae6"]
 [ext_resource type="ArrayMesh" uid="uid://b6t55xydcssye" path="res://assets/models/models_Spray_Red.res" id="3_8i04n"]
 
 [sub_resource type="Gradient" id="Gradient_1ld8b"]
@@ -10,6 +11,7 @@ colors = PackedColorArray(1, 1, 1, 0.784314, 1, 1, 1, 0.784314, 1, 1, 1, 0)
 metadata/_snap_enabled = true
 
 [node name="SprayRed" instance=ExtResource("1_8i04n")]
+script = ExtResource("2_tcae6")
 color_variation = 3
 
 [node name="Handle" parent="." index="0"]

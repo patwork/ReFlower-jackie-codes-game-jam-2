@@ -1,6 +1,7 @@
-[gd_scene load_steps=5 format=3 uid="uid://b5ar11q7l5u4l"]
+[gd_scene load_steps=6 format=3 uid="uid://b5ar11q7l5u4l"]
 
 [ext_resource type="PackedScene" uid="uid://bw2is15aojuvc" path="res://items/shooting_item.tscn" id="1_kdax7"]
+[ext_resource type="Script" uid="uid://c6ovw37x634oh" path="res://items/watering_can.gd" id="2_0flrl"]
 [ext_resource type="QuadMesh" uid="uid://ny6leal4wmo6" path="res://resources/particle_water.tres" id="2_kdax7"]
 [ext_resource type="ArrayMesh" uid="uid://b18dfjhf34fhj" path="res://assets/models/models_WaterCan.res" id="3_2jqjt"]
 
@@ -10,6 +11,7 @@ colors = PackedColorArray(1, 1, 1, 0.784314, 1, 1, 1, 0.784314, 1, 1, 1, 0)
 metadata/_snap_enabled = true
 
 [node name="WateringCan" instance=ExtResource("1_kdax7")]
+script = ExtResource("2_0flrl")
 color_variation = 1
 
 [node name="Handle" parent="." index="0"]

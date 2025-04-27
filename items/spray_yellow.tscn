@@ -1,6 +1,7 @@
-[gd_scene load_steps=5 format=3 uid="uid://baib7wf758seg"]
+[gd_scene load_steps=6 format=3 uid="uid://baib7wf758seg"]
 
 [ext_resource type="PackedScene" uid="uid://bw2is15aojuvc" path="res://items/shooting_item.tscn" id="1_vrer1"]
+[ext_resource type="Script" uid="uid://fmruwsd3h3va" path="res://items/spray.gd" id="2_s77ga"]
 [ext_resource type="QuadMesh" uid="uid://yakx1m1c7s53" path="res://resources/particle_yellow_spray.tres" id="2_vrer1"]
 [ext_resource type="ArrayMesh" uid="uid://d10smnb5bpdsj" path="res://assets/models/models_Spray_Yellow.res" id="3_1ld8b"]
 
@@ -10,6 +11,7 @@ colors = PackedColorArray(1, 1, 1, 0.784314, 1, 1, 1, 0.784314, 1, 1, 1, 0)
 metadata/_snap_enabled = true
 
 [node name="SprayYellow" instance=ExtResource("1_vrer1")]
+script = ExtResource("2_s77ga")
 color_variation = 4
 
 [node name="Handle" parent="." index="0"]
