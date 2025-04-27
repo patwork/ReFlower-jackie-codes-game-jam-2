@@ -33,7 +33,7 @@ func _ready() -> void:
 	_animation_length = animation_player.get_animation(ANIM_GROW).length
 	seek_animation(0.0)
 
-	call_deferred("_on_update_tick_timeout")
+	_on_update_tick_timeout.call_deferred()
 
 
 func seek_animation(percent: float) -> void:

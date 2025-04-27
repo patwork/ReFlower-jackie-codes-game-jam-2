@@ -39,4 +39,4 @@ func hurt() -> void:
 
 
 func destruct() -> void:
-	call_deferred("queue_free")
+	queue_free.call_deferred()

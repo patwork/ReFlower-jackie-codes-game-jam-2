@@ -48,7 +48,7 @@ func _ready() -> void:
 
 	audio_pain_1.stream = AudioManager.sound_effects[AudioManager.SOUND_EFFECT.PAIN1]
 
-	call_deferred("on_change_health")
+	on_change_health.call_deferred()
 
 
 func _unhandled_input(event: InputEvent) -> void:
