@@ -42,7 +42,11 @@ func on_flower_water_update(water: float, color: Color) -> void:
 
 
 func on_player_hp_update(hp: int) -> void:
-	label_hp.text = "♥".repeat(hp)
+	# FIXME label_hp.text = "♥".repeat(hp)
+	if hp > 0:
+		label_hp.text = "HEALTH".substr(0, hp)
+	else:
+		label_hp.text = "- RIP -"
 
 
 func on_enemy_in_reach(state: bool) -> void:

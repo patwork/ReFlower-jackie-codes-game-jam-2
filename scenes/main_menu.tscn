@@ -67,11 +67,11 @@ layout_mode = 2
 size_flags_vertical = 3
 text = "Take care of your flower and don't let pests destroy it.
 
-☑ left click to shoot, right click to interact
+- left click to shoot, right click to interact
 
-☑ flower will only grow if water is between 50-100%
+- flower will only grow if water is between 50-100%
 
-☑ pests are only vulnerable to sprays colored like them
+- pests are only vulnerable to sprays colored like them
 
 Good luck!"
 fit_content = true
