@@ -23,4 +23,6 @@ func _ready() -> void:
 
 
 func _process(_delta: float) -> void:
-	look_at(Vector3(destination.x, position.y, destination.z))
+	var look: Vector3 = Vector3(destination.x, position.y, destination.z)
+	if not position.is_equal_approx(look):
+		look_at(look)

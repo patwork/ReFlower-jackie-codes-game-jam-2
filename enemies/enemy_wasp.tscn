@@ -12,7 +12,7 @@ radius = 0.3
 [node name="EnemyWasp" instance=ExtResource("1_upg53")]
 script = ExtResource("2_5ewww")
 
-[node name="CollisionShape3D" parent="Hitbox" index="0"]
+[node name="CollisionShape3D" parent="Hurtbox" index="0"]
 shape = SubResource("SphereShape3D_lj4iv")
 
 [node name="Awaken" parent="AI" index="0" node_paths=PackedStringArray("next_state")]

@@ -1,9 +1,13 @@
-[gd_scene load_steps=3 format=3 uid="uid://b8yv2r2bdd7od"]
+[gd_scene load_steps=6 format=3 uid="uid://b8yv2r2bdd7od"]
 
+[ext_resource type="Script" uid="uid://ea37fmnsw2rj" path="res://scenes/game_ui.gd" id="1_bt76a"]
 [ext_resource type="Theme" uid="uid://cp1u2du1vmvo5" path="res://default_theme.tres" id="1_yubou"]
 [ext_resource type="Texture2D" uid="uid://cv4llb3dt8icd" path="res://assets/icons/crosshair.png" id="2_rns2u"]
+[ext_resource type="Texture2D" uid="uid://lkgf746qln36" path="res://assets/icons/watercan.png" id="3_u2dgd"]
+[ext_resource type="Texture2D" uid="uid://dbpxj0fiptxee" path="res://assets/icons/hand.png" id="4_bt76a"]
 
 [node name="GameUI" type="CanvasLayer"]
+script = ExtResource("1_bt76a")
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 anchors_preset = 15
@@ -18,37 +22,55 @@ theme_override_constants/margin_top = 32
 theme_override_constants/margin_right = 32
 theme_override_constants/margin_bottom = 32
 
-[node name="Label" type="Label" parent="MarginContainer"]
+[node name="LabelHealth" type="Label" parent="MarginContainer"]
 layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 0
 theme_override_font_sizes/font_size = 48
-text = "LOL1"
+text = "?"
 
-[node name="Label2" type="Label" parent="MarginContainer"]
+[node name="LabelWater" type="Label" parent="MarginContainer"]
 layout_mode = 2
 size_flags_horizontal = 8
 size_flags_vertical = 0
 theme_override_font_sizes/font_size = 48
-text = "LOL2"
+text = "?"
 
-[node name="Label3" type="Label" parent="MarginContainer"]
+[node name="GameWin" type="Label" parent="MarginContainer"]
+visible = false
 layout_mode = 2
-size_flags_horizontal = 0
-size_flags_vertical = 8
-theme_override_font_sizes/font_size = 48
-text = "LOL3"
+size_flags_horizontal = 4
+theme_override_font_sizes/font_size = 80
+text = "CONGRATULATIONS
+YOUR FLOWER HAS GROWN"
+horizontal_alignment = 1
 
-[node name="Label4" type="Label" parent="MarginContainer"]
+[node name="GameLose" type="Label" parent="MarginContainer"]
+visible = false
 layout_mode = 2
-size_flags_horizontal = 8
-size_flags_vertical = 8
-theme_override_font_sizes/font_size = 48
-text = "LOL4"
+size_flags_horizontal = 4
+theme_override_font_sizes/font_size = 80
+text = "OOOPS!
+YOU FAILED"
+horizontal_alignment = 1
 
-[node name="TextureRect" type="TextureRect" parent="MarginContainer"]
+[node name="Crosshair" type="TextureRect" parent="MarginContainer"]
 modulate = Color(1, 1, 1, 0.501961)
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 texture = ExtResource("2_rns2u")
+
+[node name="WaterCanIcon" type="TextureRect" parent="MarginContainer"]
+visible = false
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = ExtResource("3_u2dgd")
+
+[node name="HandIcon" type="TextureRect" parent="MarginContainer"]
+visible = false
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = ExtResource("4_bt76a")

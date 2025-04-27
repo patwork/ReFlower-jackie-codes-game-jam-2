@@ -14,14 +14,19 @@ extends CharacterBody3D
 
 @onready var audio_footstep: AudioStreamPlayer3D = $Footsteps/AudioFootstep
 
+var game_over: bool
 var input_dir: Vector3
 var item_in_hand: MyHoldableItem
+var item_in_reach: bool
 var footsteps_dist: float
 
 
 func _ready() -> void:
+	game_over = false
+
 	input_dir = Vector3.ZERO
 	item_in_hand = null
+	item_in_reach = false
 	footsteps_dist = 0.0
 
 	audio_footstep.stream = AudioManager.sound_effects[AudioManager.SOUND_EFFECT.FOOTSTEP]
@@ -40,10 +45,17 @@ func _unhandled_input(event: InputEvent) -> void:
 
 
 func _process(_delta: float) -> void:
+	if game_over:
+		return
+
+	raycast_check()
 	footsteps_sounds()
 
 
 func _physics_process(delta: float) -> void:
+	if game_over:
+		return
+
 	get_input()
 
 	var target_velocity: Vector3 = input_dir * move_speed
@@ -105,9 +117,29 @@ func footsteps_sounds() -> void:
 		audio_footstep.play()
 
 
+func raycast_check() -> void:
+	if ray_cast_3d.is_colliding():
+		var collider: Object = ray_cast_3d.get_collider()
+		if collider is Area3D:
+			if (collider as Area3D).get_collision_layer_value(Constants.COLLISION_LAYERS.ITEMS):
+				if not item_in_reach:
+					item_in_reach = true
+					EventBus.item_in_reach.emit(true)
+	else:
+		if item_in_reach:
+			item_in_reach = false
+			EventBus.item_in_reach.emit(false)
+
+
 func _on_hitbox_area_entered(area: Area3D) -> void:
-	print("in", area)
+	if area.get_collision_layer_value(Constants.COLLISION_LAYERS.ENEMIES):
+		EventBus.enemy_in_reach.emit(true)
+	if area.get_collision_layer_value(Constants.COLLISION_LAYERS.FLOWER):
+		EventBus.flower_in_reach.emit(true)
 
 
 func _on_hitbox_area_exited(area: Area3D) -> void:
-	print("out", area)
+	if area.get_collision_layer_value(Constants.COLLISION_LAYERS.ENEMIES):
+		EventBus.enemy_in_reach.emit(false)
+	if area.get_collision_layer_value(Constants.COLLISION_LAYERS.FLOWER):
+		EventBus.flower_in_reach.emit(false)
