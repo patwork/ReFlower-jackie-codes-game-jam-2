@@ -115,11 +115,17 @@ func get_input() -> void:
 
 
 func shoot() -> void:
+	if game_over:
+		return
+
 	if item_in_hand and item_in_hand is MyShootingItem:
 		(item_in_hand as MyShootingItem).start_shooting()
 
 
 func interact() -> void:
+	if game_over:
+		return
+
 	if ray_cast_3d.is_colliding():
 		var collider: Object = ray_cast_3d.get_collider()
 		if collider is Area3D:

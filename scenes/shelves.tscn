@@ -1,0 +1,25 @@
+[gd_scene load_steps=6 format=3 uid="uid://dfbxm6l8s4edk"]
+
+[ext_resource type="PackedScene" uid="uid://3dk2mqubsabg" path="res://scenes/shelf.tscn" id="1_jdaca"]
+[ext_resource type="PackedScene" uid="uid://bs0gvjvpxtg0y" path="res://items/spray_red.tscn" id="2_ps1no"]
+[ext_resource type="PackedScene" uid="uid://b7ah1o2etqwd7" path="res://items/spray_blue.tscn" id="3_ej0r5"]
+[ext_resource type="PackedScene" uid="uid://baib7wf758seg" path="res://items/spray_yellow.tscn" id="4_28e5k"]
+[ext_resource type="PackedScene" uid="uid://b5ar11q7l5u4l" path="res://items/watering_can.tscn" id="5_m613u"]
+
+[node name="Shelves" type="Node3D"]
+
+[node name="Shelf" parent="." instance=ExtResource("1_jdaca")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6, 1.48, -9.5)
+initial_item = ExtResource("2_ps1no")
+
+[node name="Shelf2" parent="." instance=ExtResource("1_jdaca")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 6, 1.19, 9.5)
+initial_item = ExtResource("3_ej0r5")
+
+[node name="Shelf3" parent="." instance=ExtResource("1_jdaca")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 9.5, 1.19, -6)
+initial_item = ExtResource("4_28e5k")
+
+[node name="Shelf4" parent="." instance=ExtResource("1_jdaca")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -9.5, 1.19, 6)
+initial_item = ExtResource("5_m613u")

@@ -14,7 +14,7 @@ var _debug_mouse_mode: int
 func _ready() -> void:
 	_debug_mouse_mode = Input.MOUSE_MODE_CAPTURED
 	Input.set_mouse_mode(_debug_mouse_mode)
-	# FIXME audio_stream_player.play()
+	audio_stream_player.play()
 
 	EventBus.game_win.connect(self.on_game_win)
 	EventBus.game_lose.connect(self.on_game_lose)
@@ -36,13 +36,13 @@ func _unhandled_input(event: InputEvent) -> void:
 
 func on_game_win() -> void:
 	flower.game_over = true
-	# FIXME enemy_spawner
+	enemy_spawner.game_over = true
 	player.game_over = true
 	game_ui.show_win_screen()
 
 
 func on_game_lose() -> void:
 	flower.game_over = true
-	# FIXME enemy_spawner
+	enemy_spawner.game_over = true
 	player.game_over = true
 	game_ui.show_loose_screen()
