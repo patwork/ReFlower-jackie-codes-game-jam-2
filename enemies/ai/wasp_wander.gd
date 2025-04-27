@@ -17,7 +17,13 @@ func enter(_from_state: MyState) -> void:
 
 
 func update(_delta: float) -> void:
+	if not wasp.is_alive:
+		return state_machine.switch_state($"../WaspDie" as MyState)
+
 	wasp.position = wasp.position.move_toward(wasp.destination, _delta * 3.0)
 
 	if  wasp.position.distance_to(wasp.destination) < 0.1:
-		state_machine.switch_state($"../WaspHover" as MyState)
+		return state_machine.switch_state($"../WaspHover" as MyState)
+
+	if wasp.agression > 5.0:
+		return state_machine.switch_state($"../WaspAttack" as MyState)

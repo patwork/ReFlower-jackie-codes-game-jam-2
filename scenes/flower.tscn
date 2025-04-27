@@ -28,3 +28,9 @@ collision_mask = 0
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D" index="0"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 shape = SubResource("CylinderShape3D_yoh7s")
+
+[node name="UpdateTick" type="Timer" parent="." index="4"]
+wait_time = 0.1
+autostart = true
+
+[connection signal="timeout" from="UpdateTick" to="." method="_on_update_tick_timeout"]

@@ -7,7 +7,9 @@ enum SOUND_EFFECT {
 	WATER_CAN,
 	SPRAY,
 	WASP_FLY,
-	WASP_DIE
+	WASP_DIE,
+	HIT,
+	PAIN1
 }
 
 @export var sound_effects: Dictionary[SOUND_EFFECT, AudioStreamMP3]

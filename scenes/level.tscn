@@ -10,7 +10,7 @@
 [sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_w7c3h"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_w8frs"]
-size = Vector3(18, 1, 1)
+size = Vector3(18, 4, 1)
 
 [node name="Level" type="StaticBody3D"]
 collision_mask = 0
@@ -19,19 +19,19 @@ collision_mask = 0
 shape = SubResource("WorldBoundaryShape3D_w7c3h")
 
 [node name="CollisionShape3D2" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, -9)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, -9)
 shape = SubResource("BoxShape3D_w8frs")
 
 [node name="CollisionShape3D3" type="CollisionShape3D" parent="."]
-transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 9, 1, 0)
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 9, 2, 0)
 shape = SubResource("BoxShape3D_w8frs")
 
 [node name="CollisionShape3D4" type="CollisionShape3D" parent="."]
-transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 0, 1, 9)
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 0, 2, 9)
 shape = SubResource("BoxShape3D_w8frs")
 
 [node name="CollisionShape3D5" type="CollisionShape3D" parent="."]
-transform = Transform3D(1.31134e-07, 0, 1, 0, 1, 0, -1, 0, 1.31134e-07, -9, 1, 0)
+transform = Transform3D(1.31134e-07, 0, 1, 0, 1, 0, -1, 0, 1.31134e-07, -9, 2, 0)
 shape = SubResource("BoxShape3D_w8frs")
 
 [node name="ModelsGround" type="MeshInstance3D" parent="."]

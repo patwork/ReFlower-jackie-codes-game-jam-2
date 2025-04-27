@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://bsxlynyplr46i"]
+[gd_scene load_steps=10 format=3 uid="uid://bsxlynyplr46i"]
 
 [ext_resource type="Script" uid="uid://bt2bnhegags7r" path="res://scripts/audio_manager.gd" id="1_dlf8v"]
 [ext_resource type="AudioStream" uid="uid://cprvoac6bhsyc" path="res://assets/sfx/esm_japanese_button_1_game_mobile_user_interface_tap_fx_sound.mp3" id="2_4c52k"]
@@ -7,6 +7,8 @@
 [ext_resource type="AudioStream" uid="uid://dwu0rdhdrloke" path="res://assets/sfx/zapsplat_household_aerosol_bug_killer_spray_002.mp3" id="4_fnmo8"]
 [ext_resource type="AudioStream" uid="uid://d28avkfq35qch" path="res://assets/sfx/zapsplat_cartoon_fly_buzz_004_12004.mp3" id="5_hbfeh"]
 [ext_resource type="AudioStream" uid="uid://dctwnwnxl5o1q" path="res://assets/sfx/animal_insect_fly_buzz_in_glass_002.mp3" id="6_mxgfu"]
+[ext_resource type="AudioStream" uid="uid://d23acsdwort22" path="res://assets/sfx/pickupCoin.mp3" id="8_th1mx"]
+[ext_resource type="AudioStream" uid="uid://cex85h8q8kwu0" path="res://assets/sfx/pain.mp3" id="9_dsa06"]
 
 [node name="AudioManager" type="Node"]
 script = ExtResource("1_dlf8v")
@@ -16,6 +18,8 @@ sound_effects = Dictionary[int, AudioStreamMP3]({
 2: ExtResource("3_v0hdg"),
 3: ExtResource("4_fnmo8"),
 4: ExtResource("5_hbfeh"),
-5: ExtResource("6_mxgfu")
+5: ExtResource("6_mxgfu"),
+6: ExtResource("8_th1mx"),
+7: ExtResource("9_dsa06")
 })
 metadata/_custom_type_script = "uid://bt2bnhegags7r"

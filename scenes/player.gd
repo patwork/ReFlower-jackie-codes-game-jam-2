@@ -1,6 +1,8 @@
 class_name MyPlayer
 extends CharacterBody3D
 
+@export var initial_health: int = 6
+
 @export var mouse_sensitivity: float = 0.2
 @export var move_speed: float = 8.0
 @export var acceleration: float = 40.0
@@ -11,25 +13,42 @@ extends CharacterBody3D
 @onready var camera: Camera3D = $Head/Camera3D
 @onready var ray_cast_3d: RayCast3D = $Head/RayCast3D
 @onready var hitbox: Area3D = $Head/Hitbox
+@onready var shooting_tick: Timer = $ShootingTick
 
 @onready var audio_footstep: AudioStreamPlayer3D = $Footsteps/AudioFootstep
+@onready var audio_hit: AudioStreamPlayer3D = $AudioHit
+@onready var audio_pain_1: AudioStreamPlayer3D = $Pain/AudioPain1
 
 var game_over: bool
+var health: int
 var input_dir: Vector3
 var item_in_hand: MyHoldableItem
 var item_in_reach: bool
+var flower_in_reach: bool
+var enemies_in_reach: Array[MyEnemy]
 var footsteps_dist: float
 
 
 func _ready() -> void:
 	game_over = false
+	health = initial_health
 
 	input_dir = Vector3.ZERO
 	item_in_hand = null
 	item_in_reach = false
+	flower_in_reach = false
+	enemies_in_reach.clear()
 	footsteps_dist = 0.0
 
+	EventBus.enemy_died.connect(self.on_enemy_died)
+	EventBus.player_hit.connect(self.on_player_hit)
+
 	audio_footstep.stream = AudioManager.sound_effects[AudioManager.SOUND_EFFECT.FOOTSTEP]
+	audio_hit.stream = AudioManager.sound_effects[AudioManager.SOUND_EFFECT.HIT]
+
+	audio_pain_1.stream = AudioManager.sound_effects[AudioManager.SOUND_EFFECT.PAIN1]
+
+	call_deferred("on_change_health")
 
 
 func _unhandled_input(event: InputEvent) -> void:
@@ -131,15 +150,75 @@ func raycast_check() -> void:
 			EventBus.item_in_reach.emit(false)
 
 
+func on_enemy_died(enemy: MyEnemy) -> void:
+	if enemy in enemies_in_reach:
+		enemies_in_reach.erase(enemy)
+
+
+func on_player_hit(strength: int) -> void:
+	if game_over:
+		return
+
+	health = maxi(health - strength, 0)
+	if health == 0:
+		EventBus.game_lose.emit()
+
+	if not audio_pain_1.playing:
+		audio_pain_1.pitch_scale = randf_range(0.9, 1.1)
+		audio_pain_1.play()
+
+	on_change_health()
+
+
+func on_change_health() -> void:
+	EventBus.player_hp_update.emit(health)
+
+
+func _on_shooting_tick_timeout() -> void:
+	if not item_in_hand:
+		return
+	if not item_in_hand is MyShootingItem:
+		return
+	if not (item_in_hand as MyShootingItem).is_shooting():
+		return
+
+	var success: bool = false
+	var variation: Constants.ENTITIES_VARIATIONS = (item_in_hand as MyShootingItem).color_variation
+
+	if variation == Constants.ENTITIES_VARIATIONS.WATER and flower_in_reach:
+		success = true
+		EventBus.flower_watered.emit()
+
+	if not enemies_in_reach.is_empty():
+		for enemy: MyEnemy in enemies_in_reach:
+			if is_instance_valid(enemy):
+				if enemy.color_variation == variation:
+					success = true
+					enemy.hurt()
+			else:
+				push_warning("enemy was not removed from enemies_in_reach")
+
+	if success:
+		audio_hit.play()
+
+
 func _on_hitbox_area_entered(area: Area3D) -> void:
 	if area.get_collision_layer_value(Constants.COLLISION_LAYERS.ENEMIES):
+		if area.owner is MyEnemy:
+			if area.owner not in enemies_in_reach:
+				enemies_in_reach.append(area.owner as MyEnemy)
 		EventBus.enemy_in_reach.emit(true)
 	if area.get_collision_layer_value(Constants.COLLISION_LAYERS.FLOWER):
+		flower_in_reach = true
 		EventBus.flower_in_reach.emit(true)
 
 
 func _on_hitbox_area_exited(area: Area3D) -> void:
 	if area.get_collision_layer_value(Constants.COLLISION_LAYERS.ENEMIES):
+		if area.owner is MyEnemy:
+			if area.owner in enemies_in_reach:
+				enemies_in_reach.erase(area.owner as MyEnemy)
 		EventBus.enemy_in_reach.emit(false)
 	if area.get_collision_layer_value(Constants.COLLISION_LAYERS.FLOWER):
+		flower_in_reach = false
 		EventBus.flower_in_reach.emit(false)

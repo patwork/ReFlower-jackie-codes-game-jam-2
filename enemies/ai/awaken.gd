@@ -5,4 +5,4 @@ extends MyState
 
 func enter(_from_state: MyState) -> void:
 	await get_tree().create_timer(randf_range(0.1, 0.9)).timeout
-	state_machine.switch_state(next_state)
+	return state_machine.switch_state(next_state)

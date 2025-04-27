@@ -7,10 +7,11 @@ extends StaticBody3D
 # water < 125 - flower stable
 # water > 125 - flower dying
 
-@export var grow_speed: float = 1.0
+@export var grow_speed: float = 0.5
 @export var dry_speed: float = 1.0
 
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
+@onready var update_tick: Timer = $UpdateTick
 
 const ANIM_GROW : StringName = &"ArmatureAction"
 
@@ -27,14 +28,38 @@ func _ready() -> void:
 	flower_health = 0.0
 	flower_water = 75.0
 
+	EventBus.flower_watered.connect(self.on_flower_watered)
+
 	_animation_length = animation_player.get_animation(ANIM_GROW).length
 	seek_animation(0.0)
 
+	call_deferred("_on_update_tick_timeout")
 
-func _process(delta: float) -> void:
+
+func seek_animation(percent: float) -> void:
+	animation_player.play(ANIM_GROW)
+	animation_player.seek((_animation_length / 100.0) * percent, true, true)
+	animation_player.pause()
+
+
+func flower_grown() -> void:
+	EventBus.game_win.emit()
+
+
+func flower_died() -> void:
+	EventBus.game_lose.emit()
+
+
+func on_flower_watered() -> void:
+	flower_water = clampf(flower_water + 1.0, 0.0, 200.0)
+	EventBus.flower_water_update.emit(flower_water, Color.BLUE)
+
+
+func _on_update_tick_timeout() -> void:
 	if game_over:
 		return
 
+	var delta: float = update_tick.wait_time
 	var color: Color = Color.WHITE
 
 	flower_water = clampf(flower_water - dry_speed * delta, 0.0, 200.0)
@@ -56,17 +81,3 @@ func _process(delta: float) -> void:
 	EventBus.flower_water_update.emit(flower_water, color)
 
 	seek_animation(flower_health)
-
-
-func seek_animation(percent: float) -> void:
-	animation_player.play(ANIM_GROW)
-	animation_player.seek((_animation_length / 100.0) * percent, true, true)
-	animation_player.pause()
-
-
-func flower_grown() -> void:
-	EventBus.game_win.emit()
-
-
-func flower_died() -> void:
-	EventBus.game_lose.emit()
