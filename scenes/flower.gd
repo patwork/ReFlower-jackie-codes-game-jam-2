@@ -25,7 +25,7 @@ var _animation_length: float
 func _ready() -> void:
 	game_over = false
 
-	flower_health = 0.0
+	flower_health = 1.0
 	flower_water = 75.0
 
 	EventBus.flower_watered.connect(self.on_flower_watered)
@@ -40,14 +40,6 @@ func seek_animation(percent: float) -> void:
 	animation_player.play(ANIM_GROW)
 	animation_player.seek((_animation_length / 100.0) * percent, true, true)
 	animation_player.pause()
-
-
-func flower_grown() -> void:
-	EventBus.game_win.emit()
-
-
-func flower_died() -> void:
-	EventBus.game_lose.emit()
 
 
 func on_flower_watered() -> void:
@@ -67,13 +59,13 @@ func _on_update_tick_timeout() -> void:
 	if flower_water < 25.0 or flower_water > 125.0:
 		flower_health -= grow_speed * delta
 		color = Color.CORAL
-		if flower_health < 0.0:
-			flower_died.call_deferred()
+		if flower_health <= 0.0:
+			EventBus.game_lose.emit()
 	elif flower_water > 50.0 and flower_water < 100.0:
 		flower_health += grow_speed * delta
 		color = Color.LIGHT_GREEN
-		if flower_health > 100.0:
-			flower_grown.call_deferred()
+		if flower_health >= 100.0:
+			EventBus.game_win.emit()
 
 	flower_health = clampf(flower_health, 0.0, 100.0)
 

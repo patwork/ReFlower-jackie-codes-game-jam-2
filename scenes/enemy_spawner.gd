@@ -68,6 +68,8 @@ func spawn_wasp() -> void:
 
 
 func on_game_win() -> void:
+	update_enemy_list()
+
 	# FIXME worms
 	# FIXME beetles
 	if not _wasps.is_empty():

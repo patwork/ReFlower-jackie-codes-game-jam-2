@@ -32,12 +32,12 @@ func _ready() -> void:
 
 
 func on_flower_health_update(health: float, color: Color) -> void:
-	label_health.text = "GROWTH %d%%" % roundi(health)
+	label_health.text = "GROWTH %d%%" % floori(health)
 	label_health.modulate = color
 
 
 func on_flower_water_update(water: float, color: Color) -> void:
-	label_water.text = "WATER %d%%" % roundi(water)
+	label_water.text = "WATER %d%%" % floori(water)
 	label_water.modulate = color
 
 
