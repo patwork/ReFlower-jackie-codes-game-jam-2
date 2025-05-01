@@ -28,10 +28,8 @@ func _ready() -> void:
 	destination = Vector3.ZERO
 	movement_delta = 0.0
 
-
 	navmap_id = navigation_agent_3d.get_navigation_map()
 	navmap_cell_size = NavigationServer3D.map_get_cell_size(navmap_id)
-	print(navmap_cell_size) # FIXME
 
 	player_ref = get_tree().get_nodes_in_group("player").pop_front()
 	assert(player_ref)
