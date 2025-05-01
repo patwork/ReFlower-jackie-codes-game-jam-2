@@ -25,13 +25,15 @@ func update(_delta: float) -> void:
 	if not wasp.is_alive:
 		return state_machine.switch_state($"../WaspDie" as MyState)
 
-	cooldown_pos -= _delta
-	if cooldown_pos < 0.0:
-		cooldown_pos = update_freq
-		wasp.destination = wasp.player_ref.position
-		wasp.navigation_agent_3d.set_target_position(wasp.destination)
+	var dist_player = wasp.agent_distance_to(wasp.player_ref.position)
 
-	if wasp.agent_distance_to(wasp.destination) < 1.0:
+	if dist_player > 1.0:
+		cooldown_pos -= _delta
+		if cooldown_pos < 0.0:
+			cooldown_pos = update_freq
+			wasp.destination = wasp.player_ref.position
+			wasp.navigation_agent_3d.set_target_position(wasp.destination)
+	else:
 		cooldown_atk -= _delta
 		if cooldown_atk < 0.0:
 			cooldown_atk = attack_freq
