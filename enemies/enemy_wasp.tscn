@@ -63,4 +63,10 @@ metadata/_custom_type_script = "uid://yfay4sjiuxe4"
 wait_time = 0.25
 autostart = true
 
+[node name="NavigationAgent3D" parent="." index="6"]
+path_desired_distance = 0.8
+target_desired_distance = 0.8
+path_height_offset = -1.1
+use_3d_avoidance = true
+
 [connection signal="timeout" from="AwareTimer" to="." method="_on_aware_timer_timeout"]

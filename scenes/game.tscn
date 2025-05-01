@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://bl5tkdp28xrwn"]
+[gd_scene load_steps=11 format=3 uid="uid://bl5tkdp28xrwn"]
 
 [ext_resource type="Script" uid="uid://ccvc5qea41i5o" path="res://scenes/game.gd" id="1_yqjtg"]
 [ext_resource type="PackedScene" uid="uid://bysrnoyu5qoi2" path="res://scenes/level.tscn" id="2_lbhrr"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://cqk024jm42d1t" path="res://scenes/flower.tscn" id="3_iywne"]
 [ext_resource type="AudioStream" uid="uid://bv88dunsiqmmr" path="res://assets/music/music_jes_smith_country_folk_can_party_full_mix_037.mp3" id="3_u5sy4"]
 [ext_resource type="PackedScene" uid="uid://rbt8n28h6xkw" path="res://scenes/player.tscn" id="4_p57ef"]
+[ext_resource type="PackedScene" uid="uid://bkpsx7neeofgo" path="res://scenes/navigation.tscn" id="4_vtaks"]
 [ext_resource type="PackedScene" uid="uid://ykynhfyo467g" path="res://scenes/enemy_spawner.tscn" id="6_0tnpc"]
 [ext_resource type="PackedScene" uid="uid://b8yv2r2bdd7od" path="res://scenes/game_ui.tscn" id="6_u5sy4"]
 [ext_resource type="PackedScene" uid="uid://dfbxm6l8s4edk" path="res://scenes/shelves.tscn" id="7_vtaks"]
@@ -24,6 +25,8 @@ shadow_enabled = true
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("3_u5sy4")
 bus = &"Music"
+
+[node name="NavigationRegion3D" parent="." instance=ExtResource("4_vtaks")]
 
 [node name="Level" parent="." instance=ExtResource("2_lbhrr")]
 

@@ -97,6 +97,7 @@ shoot={
 3d_physics/layer_3="enemies"
 3d_physics/layer_4="items"
 3d_physics/layer_5="flower"
+3d_physics/layer_6="navigation"
 
 [rendering]
 

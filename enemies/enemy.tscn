@@ -28,3 +28,9 @@ metadata/_custom_type_script = "uid://b1eh4rsv5xs3"
 [node name="Awaken" type="Node" parent="AI"]
 script = ExtResource("3_orwns")
 metadata/_custom_type_script = "uid://yfay4sjiuxe4"
+
+[node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
+simplify_path = true
+simplify_epsilon = 0.2
+avoidance_enabled = true
+neighbor_distance = 5.0
