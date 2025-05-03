@@ -1,0 +1,66 @@
+[gd_scene load_steps=9 format=3 uid="uid://8l574fxis58n"]
+
+[ext_resource type="PackedScene" uid="uid://bu1m5xtor2t0n" path="res://enemies/enemy.tscn" id="1_lg1jw"]
+[ext_resource type="Script" uid="uid://dryysl04ovljv" path="res://enemies/enemy_worm.gd" id="2_l5b1l"]
+[ext_resource type="PackedScene" uid="uid://f6efiqqqt5j0" path="res://assets/models/worm.glb" id="2_riflj"]
+[ext_resource type="Script" uid="uid://der7knxdxxia5" path="res://enemies/ai/worm_walk.gd" id="3_hgv3i"]
+[ext_resource type="Script" uid="uid://3838apwhhn77" path="res://enemies/ai/worm_die.gd" id="4_wfiqw"]
+[ext_resource type="Script" uid="uid://fg6ji5wqr3xj" path="res://enemies/ai/worm_eat.gd" id="5_wfiqw"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_ruo5f"]
+radius = 0.2
+height = 1.4
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_hgv3i"]
+radius = 1.5
+
+[node name="EnemyWorm" instance=ExtResource("1_lg1jw")]
+script = ExtResource("2_l5b1l")
+color_variation = 2
+enemy_type = 1
+initial_health = 10
+
+[node name="CollisionShape3D" parent="Hurtbox" index="0"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0.2, 0.4)
+shape = SubResource("CapsuleShape3D_ruo5f")
+
+[node name="CollisionShape3D" parent="Awareness" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.2, -0.15)
+shape = SubResource("SphereShape3D_hgv3i")
+
+[node name="Awaken" parent="AI" index="0" node_paths=PackedStringArray("next_state")]
+next_state = NodePath("../WormWalk")
+
+[node name="WormWalk" type="Node" parent="AI" index="1"]
+script = ExtResource("3_hgv3i")
+metadata/_custom_type_script = "uid://yfay4sjiuxe4"
+
+[node name="WormDie" type="Node" parent="AI" index="2"]
+script = ExtResource("4_wfiqw")
+metadata/_custom_type_script = "uid://yfay4sjiuxe4"
+
+[node name="WormEat" type="Node" parent="AI" index="3"]
+script = ExtResource("5_wfiqw")
+metadata/_custom_type_script = "uid://yfay4sjiuxe4"
+
+[node name="NavigationAgent3D" parent="." index="3"]
+path_desired_distance = 0.4
+target_desired_distance = 0.4
+path_height_offset = 0.5
+radius = 0.2
+
+[node name="worm" parent="." index="4" instance=ExtResource("2_riflj")]
+
+[node name="Audio" type="Node3D" parent="." index="5"]
+
+[node name="AudioWalk" type="AudioStreamPlayer3D" parent="Audio" index="0"]
+max_distance = 4.0
+bus = &"SFX"
+
+[node name="AudioDie" type="AudioStreamPlayer3D" parent="Audio" index="1"]
+max_distance = 4.0
+bus = &"SFX"
+
+[node name="AudioEat" type="AudioStreamPlayer3D" parent="Audio" index="2"]
+max_distance = 4.0
+bus = &"SFX"

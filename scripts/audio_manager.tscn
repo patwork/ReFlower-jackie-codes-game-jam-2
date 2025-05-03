@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://bsxlynyplr46i"]
+[gd_scene load_steps=13 format=3 uid="uid://bsxlynyplr46i"]
 
 [ext_resource type="Script" uid="uid://bt2bnhegags7r" path="res://scripts/audio_manager.gd" id="1_dlf8v"]
 [ext_resource type="AudioStream" uid="uid://cprvoac6bhsyc" path="res://assets/sfx/esm_japanese_button_1_game_mobile_user_interface_tap_fx_sound.mp3" id="2_4c52k"]
@@ -9,6 +9,9 @@
 [ext_resource type="AudioStream" uid="uid://dctwnwnxl5o1q" path="res://assets/sfx/animal_insect_fly_buzz_in_glass_002.mp3" id="6_mxgfu"]
 [ext_resource type="AudioStream" uid="uid://d23acsdwort22" path="res://assets/sfx/pickupCoin.mp3" id="8_th1mx"]
 [ext_resource type="AudioStream" uid="uid://cex85h8q8kwu0" path="res://assets/sfx/pain.mp3" id="9_dsa06"]
+[ext_resource type="AudioStream" uid="uid://bus568xig55cv" path="res://assets/sfx/zapsplat_foley_clothing_towel_soaking_wet_squeeze_rinse_squish_squelch_001_98849.mp3" id="10_cgi4u"]
+[ext_resource type="AudioStream" uid="uid://dnynrmh2pt6u" path="res://assets/sfx/animals_slug_or_worm_squish_003.mp3" id="11_svwe3"]
+[ext_resource type="AudioStream" uid="uid://yoci4h3g1eyt" path="res://assets/sfx/zapsplat_cartoon_eat_crunch_bite_sinlge_low_pitched_69529.mp3" id="12_mrtlj"]
 
 [node name="AudioManager" type="Node"]
 script = ExtResource("1_dlf8v")
@@ -20,6 +23,9 @@ sound_effects = Dictionary[int, AudioStreamMP3]({
 4: ExtResource("5_hbfeh"),
 5: ExtResource("6_mxgfu"),
 6: ExtResource("8_th1mx"),
-7: ExtResource("9_dsa06")
+7: ExtResource("9_dsa06"),
+10: ExtResource("10_cgi4u"),
+11: ExtResource("11_svwe3"),
+12: ExtResource("12_mrtlj")
 })
 metadata/_custom_type_script = "uid://bt2bnhegags7r"
