@@ -32,6 +32,9 @@ signal player_hp_update(hp: float)
 signal flower_watered()
 
 @warning_ignore("unused_signal")
+signal flower_hit(strength: float)
+
+@warning_ignore("unused_signal")
 signal enemy_hit(enemy: MyEnemy)
 
 @warning_ignore("unused_signal")

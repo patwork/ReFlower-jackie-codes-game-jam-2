@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://cqk024jm42d1t"]
+[gd_scene load_steps=5 format=3 uid="uid://cqk024jm42d1t"]
 
 [ext_resource type="PackedScene" uid="uid://cgxddka8cjcx7" path="res://assets/models/flower.glb" id="1_8x8dx"]
 [ext_resource type="Script" uid="uid://d1flnbpqxp1eg" path="res://scenes/flower.gd" id="2_yoh7s"]
+[ext_resource type="QuadMesh" uid="uid://cv03xcdt4q37k" path="res://resources/particle_munch.tres" id="3_agc10"]
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_yoh7s"]
 radius = 0.2
@@ -13,6 +14,40 @@ script = ExtResource("2_yoh7s")
 
 [node name="Armature" parent="." index="0"]
 transform = Transform3D(0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, 0, 0, 0)
+
+[node name="Skeleton3D" parent="Armature" index="0"]
+bones/0/scale = Vector3(0.2, 0.2, 0.2)
+bones/10/scale = Vector3(0.5, 0.5, 0.5)
+bones/11/position = Vector3(0.34531, 1.83507, -0.00118375)
+bones/11/rotation = Quaternion(0.031334, -0.0149763, -0.0475503, 0.998265)
+bones/12/position = Vector3(-0.171631, 1.83787, 0.299625)
+bones/12/rotation = Quaternion(0.000823646, -0.492539, -0.02652, 0.869886)
+bones/13/position = Vector3(-0.17368, 1.8322, -0.298441)
+bones/13/rotation = Quaternion(-0.0297759, 0.120398, 0.0320536, 0.991761)
+bones/14/position = Vector3(0.118732, 2.29717, -0.0233632)
+bones/14/rotation = Quaternion(-0.0450556, 0.111441, 0.026104, 0.992406)
+bones/14/scale = Vector3(0.2, 0.2, 0.2)
+bones/15/position = Vector3(0.132059, 2.29473, 0.227942)
+bones/15/rotation = Quaternion(-0.0597045, -0.50399, 0.0282702, 0.86118)
+bones/15/scale = Vector3(0.2, 0.2, 0.2)
+bones/16/position = Vector3(-0.0791135, 2.29828, 0.091746)
+bones/16/rotation = Quaternion(0.029193, -0.620012, 0.036165, 0.783215)
+bones/16/scale = Vector3(0.2, 0.2, 0.2)
+bones/17/position = Vector3(-0.145143, 2.29717, -0.0222253)
+bones/17/rotation = Quaternion(-0.0128698, 0.998137, -0.0207635, 0.0559182)
+bones/17/scale = Vector3(0.2, 0.2, 0.2)
+bones/18/position = Vector3(-0.0792354, 2.29606, -0.136765)
+bones/18/rotation = Quaternion(0.0157757, 0.155327, 0.0794047, 0.98454)
+bones/18/scale = Vector3(0.2, 0.2, 0.2)
+bones/19/position = Vector3(0.0527021, 2.29827, -0.137334)
+bones/19/rotation = Quaternion(0.0144456, 0.436816, -0.0414614, 0.898479)
+bones/19/scale = Vector3(0.2, 0.2, 0.2)
+bones/20/scale = Vector3(0.2, 0.2, 0.2)
+bones/21/scale = Vector3(0.2, 0.2, 0.2)
+bones/22/scale = Vector3(0.2, 0.2, 0.2)
+bones/23/scale = Vector3(0.2, 0.2, 0.2)
+bones/24/scale = Vector3(0.2, 0.2, 0.2)
+bones/25/scale = Vector3(0.2, 0.2, 0.2)
 
 [node name="AnimationPlayer" parent="." index="1"]
 autoplay = "ArmatureAction"
@@ -32,5 +67,17 @@ shape = SubResource("CylinderShape3D_yoh7s")
 [node name="UpdateTick" type="Timer" parent="." index="4"]
 wait_time = 0.1
 autostart = true
+
+[node name="CPUParticles3D" type="CPUParticles3D" parent="." index="5"]
+cast_shadow = 0
+emitting = false
+mesh = ExtResource("3_agc10")
+direction = Vector3(0, 1, 0)
+spread = 25.0
+initial_velocity_min = 2.0
+initial_velocity_max = 3.0
+angular_velocity_min = -90.0
+angular_velocity_max = 90.0
+scale_amount_max = 1.5
 
 [connection signal="timeout" from="UpdateTick" to="." method="_on_update_tick_timeout"]
